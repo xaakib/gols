@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gols/screens/home_screen.dart';
+import 'package:gols/screens/mainHome/mainHome.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -153,7 +153,7 @@ class RegisterScreen extends StatelessWidget {
                         pageBuilder: (BuildContext context,
                             Animation<double> animation,
                             Animation<double> secAnimation) {
-                          return HomeScreen();
+                          return MainHome();
                         },
                       ));
                 },

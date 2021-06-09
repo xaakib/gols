@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gols/auth/register_option_screen.dart';
 
-import '../screens/home_screen.dart';
+import '../screens/mainHome/mainHome.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -209,7 +209,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       pageBuilder: (BuildContext context,
                           Animation<double> animation,
                           Animation<double> secAnimation) {
-                        return HomeScreen();
+                        return MainHome();
                       },
                     ));
               },

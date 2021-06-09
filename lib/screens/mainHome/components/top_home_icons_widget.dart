@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class TopHomeIconsWigets extends StatelessWidget {
   final String image, name;
 
-  const TopHomeIconsWigets({Key? key, required this.image, required this.name})
+  const TopHomeIconsWigets({Key key,  this.image,  this.name})
       : super(key: key);
 
   @override

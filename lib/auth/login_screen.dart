@@ -144,9 +144,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         checkColor: Colors.white,
                         fillColor: MaterialStateProperty.resolveWith(getColor),
                         value: isChecked,
-                        onChanged: (bool? value) {
+                        onChanged: (bool value) {
                           setState(() {
-                            isChecked = value!;
+                            isChecked = value;
                           });
                         },
                       ),

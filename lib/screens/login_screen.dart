@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gols/screens/register_option_screen.dart';
 
+import 'home_screen.dart';
+
 class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
@@ -35,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 200,
               decoration: BoxDecoration(
                   image: DecorationImage(
-                image: AssetImage("assets/images/reference-groups.jpg"),
+                image: AssetImage("assets/images/undraw_exams_g4ow@2x.png"),
               )),
             ),
             SizedBox(height: 30),
@@ -162,29 +164,55 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             SizedBox(height: 30),
-            Container(
-              height: 40,
-              width: 150,
-              decoration: BoxDecoration(
-                color: Colors.indigoAccent,
-                borderRadius: BorderRadius.circular(25),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 3,
-                    blurRadius: 7,
-                    offset: Offset(0, 3), // changes position of shadow
-                  )
-                ],
+            GestureDetector(
+              child: Container(
+                height: 40,
+                width: 150,
+                decoration: BoxDecoration(
+                  color: Colors.indigoAccent,
+                  borderRadius: BorderRadius.circular(25),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 3,
+                      blurRadius: 7,
+                      offset: Offset(0, 3), // changes position of shadow
+                    )
+                  ],
+                ),
+                child: Center(
+                    child: Text(
+                  "LogIn",
+                  style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                      letterSpacing: 2),
+                )),
               ),
-              child: Center(
-                  child: Text(
-                "LogIn",
-                style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
-                    letterSpacing: 2),
-              )),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      transitionDuration: Duration(milliseconds: 400),
+                      transitionsBuilder: (BuildContext context,
+                          Animation<double> animation,
+                          Animation<double> secAnimation,
+                          Widget child) {
+                        animation = CurvedAnimation(
+                            parent: animation, curve: Curves.easeOutQuint);
+                        return ScaleTransition(
+                          alignment: Alignment.center,
+                          scale: animation,
+                          child: child,
+                        );
+                      },
+                      pageBuilder: (BuildContext context,
+                          Animation<double> animation,
+                          Animation<double> secAnimation) {
+                        return HomeScreen();
+                      },
+                    ));
+              },
             )
           ],
         ),

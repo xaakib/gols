@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gols/screens/registation_screen.dart';
+import 'package:gols/auth/registation_screen.dart';
 
 class RegisterOptionScreen extends StatelessWidget {
   const RegisterOptionScreen({Key? key}) : super(key: key);

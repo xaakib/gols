@@ -1,5 +1,6 @@
 import 'package:floatingpanel/floatingpanel.dart';
 import 'package:flutter/material.dart';
+import 'package:gols/screens/institue/institute_screen.dart';
 
 import 'components/top_home_icons_widget.dart';
 
@@ -19,7 +20,76 @@ class _MainHomeState extends State<MainHome> {
           elevation: 0,
           backgroundColor: Colors.white,
           leadingWidth: 0.0,
-          leading: Icon(Icons.image, size: 1),
+          leading: Icon(Icons.menu),
+          bottom: PreferredSize(
+              child: Column(
+                children: [
+                  SizedBox(height: 5),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 50),
+                    height: 70,
+                    color: Colors.white,
+                    width: MediaQuery.of(context).size.width,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          child: TopHomeIconsWigets(
+                            image: "assets/icons/home@2x.png",
+                            name: "Home",
+                          ),
+                        ),
+                        Container(
+                          child: TopHomeIconsWigets(
+                            image: "assets/icons/tools@2x.png",
+                            name: "Tools",
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                PageRouteBuilder(
+                                  transitionDuration:
+                                      Duration(milliseconds: 400),
+                                  transitionsBuilder: (BuildContext context,
+                                      Animation<double> animation,
+                                      Animation<double> secAnimation,
+                                      Widget child) {
+                                    animation = CurvedAnimation(
+                                        parent: animation,
+                                        curve: Curves.easeOutQuint);
+                                    return ScaleTransition(
+                                      alignment: Alignment.center,
+                                      scale: animation,
+                                      child: child,
+                                    );
+                                  },
+                                  pageBuilder: (BuildContext context,
+                                      Animation<double> animation,
+                                      Animation<double> secAnimation) {
+                                    return InstitutesScreen();
+                                  },
+                                ));
+                          },
+                          child: Container(
+                            child: TopHomeIconsWigets(
+                              image: "assets/icons/Institute@2x.png",
+                              name: "Institute",
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 5),
+                  Container(
+                    height: 1,
+                    color: Colors.indigoAccent,
+                  ),
+                ],
+              ),
+              preferredSize: Size.fromHeight(90.0)),
           title: Text(
             'Goals',
             style: TextStyle(color: Colors.indigoAccent, fontSize: 30),
@@ -44,41 +114,9 @@ class _MainHomeState extends State<MainHome> {
                 physics: BouncingScrollPhysics(),
                 child: Column(
                   children: [
-                    //TopIconsBar>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 50),
-                      height: 70,
-                      color: Colors.white,
-                      width: MediaQuery.of(context).size.width,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            child: TopHomeIconsWigets(
-                              image: "assets/icons/home@2x.png",
-                              name: "Home",
-                            ),
-                          ),
-                          Container(
-                            child: TopHomeIconsWigets(
-                              image: "assets/icons/tools@2x.png",
-                              name: "Tools",
-                            ),
-                          ),
-                          Container(
-                            child: TopHomeIconsWigets(
-                              image: "assets/icons/Institute@2x.png",
-                              name: "Institute",
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      height: 1,
-                      color: Colors.indigoAccent,
-                    ),
                     SizedBox(height: 10),
+                    //TopIconsBar>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 50),
                       height: 70,
@@ -90,7 +128,7 @@ class _MainHomeState extends State<MainHome> {
                           Container(
                             child: TopHomeIconsWigets(
                               image: "assets/icons/newsfeed@2x.png",
-                              name: "GoalsFeed",
+                              name: "GFeed",
                             ),
                           ),
                           Container(
@@ -251,8 +289,10 @@ class _MainHomeState extends State<MainHome> {
                           ///// public post in listbuilder>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                           SizedBox(height: 40),
                           Container(
-                            height: MediaQuery.of(context).size.height,
+                            constraints: BoxConstraints(),
                             child: ListView.builder(
+                                shrinkWrap: true,
+                                primary: false,
                                 physics: ClampingScrollPhysics(),
                                 itemCount: 10,
                                 itemBuilder: (context, index) {

@@ -1,5 +1,7 @@
 import 'package:floatingpanel/floatingpanel.dart';
 import 'package:flutter/material.dart';
+import 'package:gols/auth/register_option_screen.dart';
+import 'package:gols/screens/components/create_post_screen.dart';
 import 'package:gols/screens/institue/institute_screen.dart';
 
 import 'components/top_home_icons_widget.dart';
@@ -247,17 +249,22 @@ class _MainHomeState extends State<MainHome> {
                                               ),
                                             ),
                                             SizedBox(width: 10),
-                                            Container(
-                                              height: 35,
-                                              width: 35,
-                                              decoration: BoxDecoration(
-                                                  color: Colors.grey
-                                                      .withOpacity(0.5),
-                                                  shape: BoxShape.circle),
-                                              child: Image.asset(
-                                                "assets/icons/look-for.png",
+                                            InkWell(
+                                              onTap: () {
+                                                _showMyDialog(context);
+                                              },
+                                              child: Container(
                                                 height: 35,
                                                 width: 35,
+                                                decoration: BoxDecoration(
+                                                    color: Colors.grey
+                                                        .withOpacity(0.5),
+                                                    shape: BoxShape.circle),
+                                                child: Image.asset(
+                                                  "assets/icons/look-for.png",
+                                                  height: 35,
+                                                  width: 35,
+                                                ),
                                               ),
                                             ),
                                           ],
@@ -445,5 +452,73 @@ class _MainHomeState extends State<MainHome> {
                 ]),
           ],
         ));
+  }
+
+  Future<void> _showMyDialog(context) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Colors.indigoAccent,
+          title: Text('Looking For',style: TextStyle(color: Colors.white),),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                SizedBox(height: 25),
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        PageRouteBuilder(
+                          transitionDuration: Duration(milliseconds: 400),
+                          transitionsBuilder: (BuildContext context,
+                              Animation<double> animation,
+                              Animation<double> secAnimation,
+                              Widget child) {
+                            animation = CurvedAnimation(
+                                parent: animation, curve: Curves.easeOutQuint);
+                            return ScaleTransition(
+                              alignment: Alignment.center,
+                              scale: animation,
+                              child: child,
+                            );
+                          },
+                          pageBuilder: (BuildContext context,
+                              Animation<double> animation,
+                              Animation<double> secAnimation) {
+                            return CreatePostScreen();
+                          },
+                        ));
+                  },
+                  child: AsRegisterContainerWidgets(
+                    image: "assets/images/undraw_teaching_f1cm@2x.png",
+                    name: "Teacher",
+                  ),
+                ),
+                SizedBox(height: 25),
+                AsRegisterContainerWidgets(
+                  image: "assets/images/student@2x.png",
+                  name: "Student",
+                ),
+                SizedBox(height: 25),
+                AsRegisterContainerWidgets(
+                  image: "assets/images/others image@2x.png",
+                  name: "Others",
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Back'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }

@@ -110,11 +110,10 @@ class _InstitutesScreenState extends State<InstitutesScreen> {
                           height: 80,
                           width: 80,
                           decoration: BoxDecoration(
-                              color: Colors.black,
                               image: DecorationImage(
                                   fit: BoxFit.cover,
                                   image:
-                                      AssetImage("assets/images/profile2.jpg")),
+                                      AssetImage("assets/icons/schoolss.png")),
                               shape: BoxShape.circle),
                         ),
                         title: Text(
